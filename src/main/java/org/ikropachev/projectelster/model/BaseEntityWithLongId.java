@@ -3,12 +3,12 @@ package org.ikropachev.projectelster.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import org.ikropachev.projectelster.HasIntegerId;
+import org.ikropachev.projectelster.HasLongId;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.util.ProxyUtils;
 import org.springframework.util.Assert;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @MappedSuperclass
 //  https://stackoverflow.com/a/6084701/548473
@@ -17,15 +17,15 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class BaseEntityWithIntegerId implements Persistable<Integer>, HasIntegerId {
+public abstract class BaseEntityWithLongId implements Persistable<Long>, HasLongId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
-    protected Integer id;
+    protected Long id;
 
     // doesn't work for hibernate lazy proxy
-    public int id() {
+    public Long id() {
         Assert.notNull(id, "Entity must have id");
         return id;
     }
@@ -45,17 +45,17 @@ public abstract class BaseEntityWithIntegerId implements Persistable<Integer>, H
         if (o == null || !getClass().equals(ProxyUtils.getUserClass(o))) {
             return false;
         }
-        BaseEntityWithIntegerId that = (BaseEntityWithIntegerId) o;
+        BaseEntityWithLongId that = (BaseEntityWithLongId) o;
         return id != null && id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return id == null ? 0 : id;
+        return id == null ? 0 : id.hashCode();
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ":" + id;
+        return getClass().getSimpleName() + ":" + id.toString();
     }
 }

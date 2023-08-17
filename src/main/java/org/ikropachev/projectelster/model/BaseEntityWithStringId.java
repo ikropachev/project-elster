@@ -8,7 +8,9 @@ import org.springframework.data.domain.Persistable;
 import org.springframework.data.util.ProxyUtils;
 import org.springframework.util.Assert;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 //  https://stackoverflow.com/a/6084701/548473
@@ -20,7 +22,7 @@ import javax.persistence.*;
 public abstract class BaseEntityWithStringId implements Persistable<String>, HasStringId {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Size(min = 2, max = 128)
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
     protected String id;
 

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class NamedEntityWithIntegerId extends BaseEntityWithIntegerId {
+public abstract class NamedEntityWithLongId extends BaseEntityWithLongId {
 
     @NotBlank
     @Size(min = 2, max = 128)
@@ -23,7 +23,7 @@ public abstract class NamedEntityWithIntegerId extends BaseEntityWithIntegerId {
     @Schema(example = "name")
     protected String name;
 
-    protected NamedEntityWithIntegerId(Integer id, String name) {
+    protected NamedEntityWithLongId(Long id, String name) {
         super(id);
         this.name = name;
     }
