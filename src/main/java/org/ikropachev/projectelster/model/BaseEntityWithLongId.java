@@ -10,18 +10,13 @@ import org.springframework.util.Assert;
 
 import jakarta.persistence.*;
 
-@MappedSuperclass
 //  https://stackoverflow.com/a/6084701/548473
 @Access(AccessType.FIELD)
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class BaseEntityWithLongId implements Persistable<Long>, HasLongId {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
+public abstract class BaseEntityWithLongId extends UpdatedEntity implements Persistable<Long>, HasLongId {
     protected Long id;
 
     // doesn't work for hibernate lazy proxy

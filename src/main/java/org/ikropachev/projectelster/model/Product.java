@@ -1,12 +1,13 @@
 package org.ikropachev.projectelster.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -19,9 +20,15 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product extends BaseEntityWithLongId {
+public class Product extends NamedEntityWithLongId {
+    @Id
+    @Column(name = "product_id", nullable = false)
     @Size(min = 2, max = 128)
-    @jakarta.persistence.Column(name = "name", nullable = false)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
+    protected Long id;
+
+    @Size(min = 2, max = 128)
+    @jakarta.persistence.Column(name = "product_name", nullable = false)
     @Schema(example = "name")
     protected String name;
 
@@ -35,13 +42,8 @@ public class Product extends BaseEntityWithLongId {
     @Schema(example = "producttype_id")
     protected Integer producttypeId;
 
-    @NotNull
-    @Column(name = "updated_dtm", columnDefinition = "date default now()")
-    @Schema(example = "updated_dtm")
-    protected LocalDate updatedDtm;
-
     public Product(Long id, String name, Integer supplierId, Integer productTypeId, LocalDate updatedDtm) {
-        super(id);
+        this.id = id;
         this.name = name;
         this.supplierId = supplierId;
         this.producttypeId = productTypeId;

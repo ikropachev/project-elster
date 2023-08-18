@@ -1,12 +1,13 @@
 package org.ikropachev.projectelster.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -20,10 +21,16 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Customer extends BaseEntityWithStringId{
+public class Customer extends NamedEntityWithStringId{
+    @Id
+    @Column(name = "customer_id", nullable = false)
     @Size(min = 2, max = 128)
-    @jakarta.persistence.Column(name = "name", nullable = false)
-    @Schema(example = "name")
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
+    protected String id;
+
+    @Size(min = 2, max = 128)
+    @Column(name = "cust_name", nullable = false)
+    @Schema(example = "cust_name")
     protected String name;
 
     @NotBlank
@@ -44,13 +51,8 @@ public class Customer extends BaseEntityWithStringId{
     @Schema(example = "itn")
     protected String itn;
 
-    @NotNull
-    @Column(name = "updated_dtm", columnDefinition = "date default now()")
-    @Schema(example = "updated_dtm")
-    protected LocalDate updatedDtm;
-
     public Customer(String id, String name, String street, String city, String itn, LocalDate updatedDtm) {
-        super(id);
+        this.id = id;
         this.name = name;
         this.street = street;
         this.city = city;

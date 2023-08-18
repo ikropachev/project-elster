@@ -1,12 +1,13 @@
 package org.ikropachev.projectelster.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -19,6 +20,11 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderInfo extends BaseEntityWithLongId {
+    @Id
+    @Column(name = "order_id", nullable = false)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
+    protected Long id;
+
     @NotBlank
     @Column(name = "customer_id", nullable = false)
     @Schema(example = "customer_id")
@@ -29,15 +35,10 @@ public class OrderInfo extends BaseEntityWithLongId {
     @Schema(example = "salesperson_id")
     protected String salespersonId;
 
-    @NotNull
-    @Column(name = "create_dtm", columnDefinition = "date default now()")
-    @Schema(example = "create_dtm")
-    protected LocalDate createDtm;
-
-    public OrderInfo(Long id, String customerId, String salespersonId, LocalDate createDtm) {
+    public OrderInfo(Long id, String customerId, String salespersonId, LocalDate updatedDtm) {
         super(id);
         this.customerId = customerId;
         this.salespersonId = salespersonId;
-        this.createDtm = createDtm;
+        this.updatedDtm = updatedDtm;
     }
 }

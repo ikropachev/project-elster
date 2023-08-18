@@ -16,10 +16,6 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class NamedEntityWithStringId extends BaseEntityWithStringId {
-
-    @Size(min = 2, max = 128)
-    @Column(name = "name", nullable = false)
-    @Schema(example = "name")
     protected String name;
 
     protected NamedEntityWithStringId(String id, String name) {

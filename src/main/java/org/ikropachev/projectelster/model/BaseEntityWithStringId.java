@@ -12,18 +12,13 @@ import jakarta.persistence.*;
 
 import javax.validation.constraints.Size;
 
-@MappedSuperclass
 //  https://stackoverflow.com/a/6084701/548473
 @Access(AccessType.FIELD)
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class BaseEntityWithStringId implements Persistable<String>, HasStringId {
-
-    @Id
-    @Size(min = 2, max = 128)
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
+public abstract class BaseEntityWithStringId extends UpdatedEntity implements Persistable<String>, HasStringId {
     protected String id;
 
     // doesn't work for hibernate lazy proxy

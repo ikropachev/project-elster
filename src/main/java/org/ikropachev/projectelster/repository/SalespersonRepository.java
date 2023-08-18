@@ -11,7 +11,7 @@ import java.util.List;
 
 @Transactional(readOnly = true)
 @Tag(name = "Salesperson Controller")
-public interface SalesPersonRepository extends JpaRepository<Salesperson, String> {
+public interface SalespersonRepository extends JpaRepository<Salesperson, String> {
     @Query("SELECT sp FROM Salesperson sp ORDER BY sp.id")
     List<Salesperson> getAll();
 }
