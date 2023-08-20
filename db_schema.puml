@@ -1,0 +1,109 @@
+@startuml
+    !theme plain
+    hide empty methods
+
+    !procedure $schema($name, $slug)
+        package "$name" as $slug <<Rectangle>>
+    !endprocedure
+
+    !procedure $table($name, $slug)
+        entity "<b>$name</b>" as $slug << (T, DodgerBlue) >>
+    !endprocedure
+
+    !procedure $importtable($name, $slug)
+        entity "<b>$name</b>" as $slug << (T, Yellow) >>
+    !endprocedure
+
+    !procedure $pk($name)
+        <color:#GoldenRod><&key></color> <b>**$name**</b>
+    !endprocedure
+
+    !procedure $fk($name)
+        <color:#Silver><&key></color> **$name**
+    !endprocedure
+
+    !procedure $uk($name)
+        {field} <back:#Yellow> <color:#White><&media-record></color> **$name**
+    !endprocedure
+
+    !procedure $column($name)
+        {field} <color:#White><&media-record></color> **$name**
+    !endprocedure
+
+    title "Data warehouse"
+
+    $schema("dwh", "dwh") {
+        $importtable("order_info", "order_info") {
+            $pk("order_id"):        INTEGER NOT NULL
+            $column("customer_id"):     VARCHAR(16) NOT NULL
+            $column("salesperson_id"):  VARCHAR(16) NOT NULL
+            $column("updated_dtm"): TIMESTAMP NOT NULL
+        }
+        $importtable("orderline", "orderline") {
+            $pk("orderline_id"):    INTEGER NOT NULL
+            $column("order_id"):        INTEGER NOT NULL
+            $column("product_id"):      INTEGER NOT NULL
+            $column("quantity"):        INTEGER NOT NULL
+            $column("price"):           REAL NOT NULL
+        }
+        $importtable("customer", "customer") {
+            $pk("customer_id"): VARCHAR(16) NOT NULL
+            $column("cust_name"):   VARCHAR(20) NOT NULL
+            $column("street"):      VARCHAR(50)
+            $column("city "):       VARCHAR(30)
+            $column("itn"):         VARCHAR(20)
+            $column("updated_dtm"): TIMESTAMP DEFAULT
+        }
+        $importtable("product", "product") {
+            $pk("product_id "):      INTEGER NOT NULL
+            $column("product_name"):     VARCHAR(50) NOT NULL
+            $column("updated_dtm"):      TIMESTAMP DEFAULT
+        }
+        $importtable("salesperson", "salesperson") {
+            $pk("salesperson_id"):   VARCHAR(16) NOT NULL
+            $column("salesperson_name"): VARCHAR(20) NOT NULL
+            $column("updated_dtm"):      TIMESTAMP DEFAULT
+        }
+        $table("fact_orderline", "fact_orderline") {
+            $column("order_date_key"):          DATE    NOT NULL
+            $column("time_key"):                TIME    NOT NULL
+            $column("product_key"):             INTEGER NOT NULL
+            $column("customer_key"):            INTEGER NOT NULL
+            $column("salesperson_key"):         INTEGER NOT NULL
+            $column("order_id"):                INTEGER NOT NULL
+            $column("orderline_id"):            INTEGER NOT NULL
+            $column("quantity"):                INTEGER NOT NULL
+            $column("price"):                   REAL    NOT NULL
+        }
+        $table("dim_customer", "dim_customer") {
+            $pk("customer_key"):        INTEGER             NOT NULL,
+            $column("customer_id"):     INTEGER             NOT NULL
+            $column("customer_name"):   VARCHAR(255)        NOT NULL
+            $column("customer_itn"):    VARCHAR(50)         NOT NULL
+            $column("start_dtm"):       TIMESTAMP           NOT NULL,
+            $column("end_dtm"):         TIMESTAMP           NOT NULL DEFAULT
+        }
+        $table("dim_product", "dim_product") {
+            $pk("product_key"):         INTEGER             NOT NULL,
+            $column("product_id"):      INTEGER             NOT NULL,
+            $column("product_name"):    VARCHAR(1024)       NOT NULL,
+            $column("start_dtm"):       TIMESTAMP           NOT NULL,
+            $column("end_dtm"):         TIMESTAMP           NOT NULL DEFAULT
+        }
+        $table("dim_salesperson", "dim_salesperson") {
+            $pk("salesperson_key"):         INTEGER             NOT NULL
+            $column("salesperson_id"):      INTEGER             NOT NULL
+            $column("salesperson_name"):    VARCHAR(1024)       NOT NULL
+            $column("start_dtm"):           TIMESTAMP           NOT NULL
+            $column("end_dtm"):             TIMESTAMP           NOT NULL DEFAULT
+        }
+    }
+    dwh.customer --> dwh.dim_customer
+    dwh.product --> dwh.dim_product
+    dwh.salesperson --> dwh.dim_salesperson
+    dwh.order_info --> dwh.fact_orderline
+    dwh.orderline --> dwh.fact_orderline
+    dwh.dim_customer --> dwh.fact_orderline
+    dwh.dim_product --> dwh.fact_orderline
+    dwh.dim_salesperson --> dwh.fact_orderline
+@enduml
