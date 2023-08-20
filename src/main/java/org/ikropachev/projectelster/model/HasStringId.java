@@ -1,12 +1,12 @@
-package org.ikropachev.projectelster;
+package org.ikropachev.projectelster.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.util.Assert;
 
-public interface HasLongId {
-    Long getId();
+public interface HasStringId {
+    String getId();
 
-    void setId(Long id);
+    void setId(String id);
 
     @JsonIgnore
     default boolean isNew() {
@@ -14,7 +14,7 @@ public interface HasLongId {
     }
 
     // doesn't work for hibernate lazy proxy
-    default Long id() {
+    default String id() {
         Assert.notNull(getId(), "Entity must has id");
         return getId();
     }
