@@ -1,16 +1,16 @@
 package org.ikropachev.projectelster.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -21,7 +21,7 @@ import java.time.LocalDate;
 public class Orderline extends BaseEntityWithLongId {
     @Id
     @Column(name = "orderline_id", nullable = false)
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null")
     protected Long id;
 
     @NotBlank

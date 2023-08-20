@@ -1,52 +1,50 @@
 package org.ikropachev.projectelster.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "customer")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Customer extends NamedEntityWithStringId{
+public class Customer extends NamedEntityWithStringId {
     @Id
     @Column(name = "customer_id", nullable = false)
-    @Size(min = 2, max = 128)
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null") // https://stackoverflow.com/a/28025008/548473
+    @Size(min = 1, max = 16)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null")
     protected String id;
 
-    @Size(min = 2, max = 128)
     @Column(name = "cust_name", nullable = false)
+    @Size(min = 1, max = 20)
     @Schema(example = "cust_name")
     protected String name;
 
     @NotBlank
-    @Size(min = 2, max = 100)
+    @Size(min = 1, max = 50)
     @Column(name = "street", nullable = false)
     @Schema(example = "street")
     protected String street;
 
     @NotBlank
-    @Size(min = 2, max = 100)
+    @Size(min = 1, max = 30)
     @Column(name = "city", nullable = false)
     @Schema(example = "city")
     protected String city;
 
     @NotBlank
-    @Size(min = 2, max = 20)
+    @Size(min = 1, max = 20)
     @Column(name = "itn", nullable = false)
     @Schema(example = "itn")
     protected String itn;

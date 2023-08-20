@@ -1,22 +1,20 @@
 package org.ikropachev.projectelster.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 import lombok.*;
 import org.ikropachev.projectelster.HasLongId;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.util.ProxyUtils;
 import org.springframework.util.Assert;
 
-import jakarta.persistence.*;
-
-//  https://stackoverflow.com/a/6084701/548473
 @Access(AccessType.FIELD)
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class BaseEntityWithLongId extends UpdatedEntity implements Persistable<Long>, HasLongId {
+public abstract class BaseEntityWithLongId extends BaseEntityWithUpdatedDtm implements Persistable<Long>, HasLongId {
     protected Long id;
 
     // doesn't work for hibernate lazy proxy
@@ -31,7 +29,6 @@ public abstract class BaseEntityWithLongId extends UpdatedEntity implements Pers
         return id == null;
     }
 
-    //    https://stackoverflow.com/questions/1638723
     @Override
     public boolean equals(Object o) {
         if (this == o) {

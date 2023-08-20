@@ -1,17 +1,11 @@
 package org.ikropachev.projectelster.model;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-@MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

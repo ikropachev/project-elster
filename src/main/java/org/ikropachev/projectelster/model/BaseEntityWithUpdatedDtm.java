@@ -5,21 +5,20 @@ import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @MappedSuperclass
-//  https://stackoverflow.com/a/6084701/548473
 @Access(AccessType.FIELD)
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class UpdatedEntity {
+public abstract class BaseEntityWithUpdatedDtm {
     @NotNull
-    @Column(name = "updated_dtm", columnDefinition = "date default now()")
+    @Column(name = "updated_dtm")
     @Schema(example = "updated_dtm")
     protected LocalDate updatedDtm;
 }
