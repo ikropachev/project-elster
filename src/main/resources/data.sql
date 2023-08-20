@@ -50,5 +50,5 @@ VALUES (3, 'Oven mittens', current_timestamp);
 
 INSERT INTO salesperson (salesperson_id, salesperson_name, updated_dtm)
 VALUES ('SPERSON-001', 'John Smith', current_timestamp);
-INSERT INTO salesperson (salesperson_id, salesperson_name, updated_dtm)
-VALUES ('SPERSON-002', 'Jack London', current_timestamp);
+--INSERT INTO salesperson (salesperson_id, salesperson_name, updated_dtm)
+--VALUES ('SPERSON-002', 'Jack London', current_timestamp);

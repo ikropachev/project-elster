@@ -21,11 +21,11 @@ import java.time.LocalDate;
 public class Salesperson extends NamedEntityWithStringId {
     @Id
     @Column(name = "salesperson_id", nullable = false)
-    @Size(min = 1, max = 16)
+    @Size(min = 1, max = 255)
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null")
     protected String id;
 
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 255)
     @Column(name = "salesperson_name", nullable = false)
     @Schema(example = "salesperson_name")
     protected String name;

@@ -27,13 +27,13 @@ public class OrderInfo extends BaseEntityWithLongId {
 
     @NotBlank
     @Column(name = "customer_id", nullable = false)
-    @Size(min = 1, max = 16)
+    @Size(min = 1, max = 255)
     @Schema(example = "customer_id")
     protected String customerId;
 
     @NotBlank
     @Column(name = "salesperson_id", nullable = false)
-    @Size(min = 1, max = 16)
+    @Size(min = 1, max = 255)
     @Schema(example = "salesperson_id")
     protected String salespersonId;
 

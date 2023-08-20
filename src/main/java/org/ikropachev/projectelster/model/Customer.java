@@ -22,29 +22,29 @@ import java.time.LocalDate;
 public class Customer extends NamedEntityWithStringId {
     @Id
     @Column(name = "customer_id", nullable = false)
-    @Size(min = 1, max = 16)
+    @Size(min = 1, max = 255)
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null")
     protected String id;
 
     @Column(name = "cust_name", nullable = false)
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 255)
     @Schema(example = "cust_name")
     protected String name;
 
     @NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 255)
     @Column(name = "street", nullable = false)
     @Schema(example = "street")
     protected String street;
 
     @NotBlank
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 255)
     @Column(name = "city", nullable = false)
     @Schema(example = "city")
     protected String city;
 
     @NotBlank
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 255)
     @Column(name = "itn", nullable = false)
     @Schema(example = "itn")
     protected String itn;

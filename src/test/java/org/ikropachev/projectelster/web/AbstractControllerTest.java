@@ -1,5 +1,6 @@
 package org.ikropachev.projectelster.web;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,9 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 @ActiveProfiles("test")
 public abstract class AbstractControllerTest {
 
-    private MockMvc mockMvc;
+    @Autowired
+    protected MockMvc mockMvc;
 
-    protected ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception {
-        return mockMvc.perform(builder);
-    }
+    @Autowired
+    protected ObjectMapper objectMapper;
+
+    //protected ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception {
+    //    return mockMvc.perform(builder);
+    //}
 }

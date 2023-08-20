@@ -24,7 +24,7 @@ public class Product extends NamedEntityWithLongId {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null")
     protected Long id;
 
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 255)
     @Column(name = "product_name", nullable = false)
     @Schema(example = "name")
     protected String name;
