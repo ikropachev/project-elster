@@ -65,15 +65,14 @@
             $column("updated_dtm"):         TIMESTAMP
         }
         $table("fact_orderline", "fact_orderline") {
-            $column("order_date_key"):          DATE
-            $column("time_key"):                TIME
-            $column("product_key"):             INTEGER
+            $pk("orderline_id"):                INTEGER
             $column("customer_key"):            INTEGER
             $column("salesperson_key"):         INTEGER
             $column("order_id"):                INTEGER
-            $column("orderline_id"):            INTEGER
+            $column("product_key"):             INTEGER
             $column("quantity"):                REAL
             $column("price"):                   REAL
+            $column("updated_dtm"):             TIMESTAMP
         }
         $table("dim_customer", "dim_customer") {
             $pk("customer_key"):        INTEGER
