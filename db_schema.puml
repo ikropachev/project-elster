@@ -34,68 +34,68 @@
 
     $schema("dwh", "dwh") {
         $importtable("order_info", "order_info") {
-            $pk("order_id"):        INTEGER NOT NULL
-            $column("customer_id"):     VARCHAR(16) NOT NULL
-            $column("salesperson_id"):  VARCHAR(16) NOT NULL
-            $column("updated_dtm"): TIMESTAMP NOT NULL
+            $pk("order_id"):            INTEGER
+            $column("customer_id"):     VARCHAR(255)
+            $column("salesperson_id"):  VARCHAR(255)
+            $column("updated_dtm"):     TIMESTAMP
         }
         $importtable("orderline", "orderline") {
-            $pk("orderline_id"):    INTEGER NOT NULL
-            $column("order_id"):        INTEGER NOT NULL
-            $column("product_id"):      INTEGER NOT NULL
-            $column("quantity"):        INTEGER NOT NULL
-            $column("price"):           REAL NOT NULL
+            $pk("orderline_id"):        INTEGER
+            $column("order_id"):        INTEGER
+            $column("product_id"):      INTEGER
+            $column("quantity"):        REAL
+            $column("price"):           REAL
         }
         $importtable("customer", "customer") {
-            $pk("customer_id"): VARCHAR(16) NOT NULL
-            $column("cust_name"):   VARCHAR(20) NOT NULL
-            $column("street"):      VARCHAR(50)
-            $column("city "):       VARCHAR(30)
-            $column("itn"):         VARCHAR(20)
-            $column("updated_dtm"): TIMESTAMP DEFAULT
+            $pk("customer_id"):     VARCHAR(255)
+            $column("cust_name"):   VARCHAR(255)
+            $column("street"):      VARCHAR(255)
+            $column("city"):        VARCHAR(255)
+            $column("itn"):         VARCHAR(255)
+            $column("updated_dtm"): TIMESTAMP
         }
         $importtable("product", "product") {
-            $pk("product_id "):      INTEGER NOT NULL
-            $column("product_name"):     VARCHAR(50) NOT NULL
-            $column("updated_dtm"):      TIMESTAMP DEFAULT
+            $pk("product_id"):          INTEGER
+            $column("product_name"):    VARCHAR(255)
+            $column("updated_dtm"):     TIMESTAMP
         }
         $importtable("salesperson", "salesperson") {
-            $pk("salesperson_id"):   VARCHAR(16) NOT NULL
-            $column("salesperson_name"): VARCHAR(20) NOT NULL
-            $column("updated_dtm"):      TIMESTAMP DEFAULT
+            $pk("salesperson_id"):          VARCHAR(255)
+            $column("salesperson_name"):    VARCHAR(255)
+            $column("updated_dtm"):         TIMESTAMP
         }
         $table("fact_orderline", "fact_orderline") {
-            $column("order_date_key"):          DATE    NOT NULL
-            $column("time_key"):                TIME    NOT NULL
-            $column("product_key"):             INTEGER NOT NULL
-            $column("customer_key"):            INTEGER NOT NULL
-            $column("salesperson_key"):         INTEGER NOT NULL
-            $column("order_id"):                INTEGER NOT NULL
-            $column("orderline_id"):            INTEGER NOT NULL
-            $column("quantity"):                INTEGER NOT NULL
-            $column("price"):                   REAL    NOT NULL
+            $column("order_date_key"):          DATE
+            $column("time_key"):                TIME
+            $column("product_key"):             INTEGER
+            $column("customer_key"):            INTEGER
+            $column("salesperson_key"):         INTEGER
+            $column("order_id"):                INTEGER
+            $column("orderline_id"):            INTEGER
+            $column("quantity"):                REAL
+            $column("price"):                   REAL
         }
         $table("dim_customer", "dim_customer") {
-            $pk("customer_key"):        INTEGER             NOT NULL,
-            $column("customer_id"):     INTEGER             NOT NULL
-            $column("customer_name"):   VARCHAR(255)        NOT NULL
-            $column("customer_itn"):    VARCHAR(50)         NOT NULL
-            $column("start_dtm"):       TIMESTAMP           NOT NULL,
-            $column("end_dtm"):         TIMESTAMP           NOT NULL DEFAULT
+            $pk("customer_key"):        INTEGER
+            $column("customer_id"):     VARCHAR(255)
+            $column("customer_name"):   VARCHAR(255)
+            $column("customer_itn"):    VARCHAR(255)
+            $column("start_dtm"):       TIMESTAMP
+            $column("end_dtm"):         TIMESTAMP
         }
         $table("dim_product", "dim_product") {
-            $pk("product_key"):         INTEGER             NOT NULL,
-            $column("product_id"):      INTEGER             NOT NULL,
-            $column("product_name"):    VARCHAR(1024)       NOT NULL,
-            $column("start_dtm"):       TIMESTAMP           NOT NULL,
-            $column("end_dtm"):         TIMESTAMP           NOT NULL DEFAULT
+            $pk("product_key"):         INTEGER
+            $column("product_id"):      INTEGER
+            $column("product_name"):    VARCHAR(255)
+            $column("start_dtm"):       TIMESTAMP
+            $column("end_dtm"):         TIMESTAMP
         }
         $table("dim_salesperson", "dim_salesperson") {
-            $pk("salesperson_key"):         INTEGER             NOT NULL
-            $column("salesperson_id"):      INTEGER             NOT NULL
-            $column("salesperson_name"):    VARCHAR(1024)       NOT NULL
-            $column("start_dtm"):           TIMESTAMP           NOT NULL
-            $column("end_dtm"):             TIMESTAMP           NOT NULL DEFAULT
+            $pk("salesperson_key"):         INTEGER
+            $column("salesperson_id"):      VARCHAR(255)
+            $column("salesperson_name"):    VARCHAR(255)
+            $column("start_dtm"):           TIMESTAMP
+            $column("end_dtm"):             TIMESTAMP
         }
     }
     dwh.customer --> dwh.dim_customer
