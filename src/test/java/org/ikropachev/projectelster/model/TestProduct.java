@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TestSalesperson extends TestNamedEntityWithStringId{
-    public TestSalesperson(String id, String name, String updatedDtm) {
+public class TestProduct extends TestNamedEntityWithLongId {
+    public TestProduct(Long id, String name, String updatedDtm) {
         this.id = id;
         this.name = name;
         this.updatedDtm = updatedDtm;
