@@ -1,6 +1,9 @@
 package org.ikropachev.projectelster.model.oltp;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.ikropachev.projectelster.model.TestNamedEntityWithStringId;
 
 @Getter

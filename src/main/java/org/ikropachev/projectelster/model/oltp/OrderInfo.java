@@ -5,12 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.ikropachev.projectelster.model.BaseEntityWithLongId;
-
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "order_info")
@@ -25,12 +21,10 @@ public class OrderInfo extends BaseEntityWithLongId {
     protected Long id;
 
     @Column(name = "customer_id", nullable = false)
-    @Size(min = 1, max = 255)
     @Schema(example = "customer_id")
     protected String customerId;
 
     @Column(name = "salesperson_id", nullable = false)
-    @Size(min = 1, max = 255)
     @Schema(example = "salesperson_id")
     protected String salespersonId;
 }

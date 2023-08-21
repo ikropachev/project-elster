@@ -26,20 +26,35 @@ public class CustomerControllerTest extends AbstractControllerTest {
 
     final List<TestCustomer> testCustomers = List.of(testCustomer1, testCustomer2, testCustomer3, testCustomer4);
 
-    TestDimCustomer testDimCustomer1 = new TestDimCustomer(1L,"CUST-001", "Jonesy", "0000000001", YESTERDAY_STR);
-    TestDimCustomer testDimCustomer2 = new TestDimCustomer(2L,"CUST-002", "Jones", "0000000002", YESTERDAY_STR);
+    TestDimCustomer testDimCustomer1 = new TestDimCustomer(1L, "CUST-001", "Jonesy",
+            "0000000001", YESTERDAY_STR);
+    TestDimCustomer testDimCustomer2 = new TestDimCustomer(2L, "CUST-002", "Jones",
+            "0000000002", YESTERDAY_STR);
 
     final List<TestDimCustomer> testDimCustomers = List.of(testDimCustomer1, testDimCustomer2);
 
     @Test
-    public void getAllCustomersTest() throws Exception {
+    public void getAllFromOltpTest() throws Exception {
         String expectedResponseContent = objectMapper.writeValueAsString(testCustomers);
 
         log.info("expectedResponseContent: " + expectedResponseContent);
 
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/customers/oltp"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json(expectedResponseContent));
+    }
+
+    @Test
+    public void processDimensionsTest() throws Exception {
+        String expectedResponseContent = objectMapper.writeValueAsString(testDimCustomers);
+
+        log.info("expectedResponseContent: " + expectedResponseContent);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/customers"))
+                .andExpect(status().isOk());
+
         mockMvc.perform(MockMvcRequestBuilders.get("/api/customers"))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(expectedResponseContent));
-
     }
 }

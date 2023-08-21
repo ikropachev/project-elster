@@ -23,10 +23,10 @@ public class OrderInfoController {
     @Autowired
     private OrderInfoRepository orderInfoRepository;
 
-    @GetMapping
-    @Operation(summary = "View a list of all orders' info")
-    public List<OrderInfo> getAll() {
-        log.info("get all orders' info");
+    @GetMapping("/oltp")
+    @Operation(summary = "View a list of all orders' info from oltp")
+    public List<OrderInfo> getAllFromOltp() {
+        log.info("get all orders' info from oltp");
         return orderInfoRepository.getAll();
     }
 }

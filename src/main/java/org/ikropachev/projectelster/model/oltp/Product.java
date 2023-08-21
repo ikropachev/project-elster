@@ -5,11 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.ikropachev.projectelster.model.NamedEntityWithLongId;
-
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "product")
@@ -23,7 +20,6 @@ public class Product extends NamedEntityWithLongId {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null")
     protected Long id;
 
-    @Size(min = 1, max = 255)
     @Column(name = "product_name", nullable = false)
     @Schema(example = "name")
     protected String name;

@@ -4,18 +4,22 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.ikropachev.projectelster.model.TestNamedEntityWithLongId;
+import org.ikropachev.projectelster.model.TestBaseEntityWithUpdatedDtm;
 
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TestDimSalesperson extends TestNamedEntityWithLongId {
+public class TestDimSalesperson extends TestBaseEntityWithUpdatedDtm {
+    protected Long id;
+
     protected String salespersonId;
 
-    public TestDimSalesperson(Long id, String salespersonId, String name, String updatedDtm) {
+    protected String salespersonName;
+
+    public TestDimSalesperson(Long id, String salespersonId, String salespersonName, String updatedDtm) {
         this.id = id;
         this.salespersonId = salespersonId;
-        this.name = name;
+        this.salespersonName = salespersonName;
         this.updatedDtm = updatedDtm;
     }
 }

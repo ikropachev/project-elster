@@ -11,6 +11,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 @Tag(name = "OrderInfo Controller")
 public interface OrderInfoRepository extends JpaRepository<OrderInfo, Long> {
+    //Use for tests
     @Query("SELECT o FROM OrderInfo o ORDER BY o.id")
     List<OrderInfo> getAll();
 }

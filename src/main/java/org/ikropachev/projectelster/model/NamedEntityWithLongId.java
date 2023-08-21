@@ -1,6 +1,5 @@
 package org.ikropachev.projectelster.model;
 
-import jakarta.persistence.MappedSuperclass;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -23,10 +23,10 @@ public class OrderlineController {
     @Autowired
     private OrderlineRepository orderlineRepository;
 
-    @GetMapping
-    @Operation(summary = "View a list of all orderlines")
-    public List<Orderline> getAll() {
-        log.info("get all orderlines");
+    @GetMapping("/oltp")
+    @Operation(summary = "View a list of all orderlines from oltp")
+    public List<Orderline> getAllFromOltp() {
+        log.info("get all orderlines from oltp");
         return orderlineRepository.getAll();
     }
 }

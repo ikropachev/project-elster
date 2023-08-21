@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TestBaseEntityWithLongId extends TestBaseEntityWithUpdatedDtm{
+public class TestBaseEntityWithLongId extends TestBaseEntityWithUpdatedDtm {
     protected Long id;
 }

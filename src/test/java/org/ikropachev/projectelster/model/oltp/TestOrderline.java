@@ -1,15 +1,10 @@
 package org.ikropachev.projectelster.model.oltp;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.ikropachev.projectelster.model.TestBaseEntityWithLongId;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter

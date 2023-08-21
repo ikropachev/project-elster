@@ -1,17 +1,17 @@
 package org.ikropachev.projectelster.model.dwh;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.ikropachev.projectelster.model.TestBaseEntityWithLongId;
+import org.ikropachev.projectelster.model.TestBaseEntityWithUpdatedDtm;
 
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class TestFactOrderline extends TestBaseEntityWithLongId {
+public class TestFactOrderline extends TestBaseEntityWithUpdatedDtm {
+    protected Long id;
+
     protected Long customerKey;
 
     protected Long salespersonKey;
