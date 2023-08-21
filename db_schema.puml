@@ -80,22 +80,19 @@
             $column("customer_id"):     VARCHAR(255)
             $column("customer_name"):   VARCHAR(255)
             $column("customer_itn"):    VARCHAR(255)
-            $column("start_dtm"):       TIMESTAMP
-            $column("end_dtm"):         TIMESTAMP
+            $column("updated_dtm"):     TIMESTAMP
         }
         $table("dim_product", "dim_product") {
             $pk("product_key"):         INTEGER
             $column("product_id"):      INTEGER
             $column("product_name"):    VARCHAR(255)
-            $column("start_dtm"):       TIMESTAMP
-            $column("end_dtm"):         TIMESTAMP
+            $column("updated_dtm"):     TIMESTAMP
         }
         $table("dim_salesperson", "dim_salesperson") {
             $pk("salesperson_key"):         INTEGER
             $column("salesperson_id"):      VARCHAR(255)
             $column("salesperson_name"):    VARCHAR(255)
-            $column("start_dtm"):           TIMESTAMP
-            $column("end_dtm"):             TIMESTAMP
+            $column("updated_dtm"):         TIMESTAMP
         }
     }
     dwh.customer --> dwh.dim_customer
