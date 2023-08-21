@@ -1,6 +1,6 @@
 package org.ikropachev.projectelster.web;
 
-import org.ikropachev.projectelster.model.TestSalesperson;
+import org.ikropachev.projectelster.model.oltp.TestSalesperson;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;

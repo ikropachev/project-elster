@@ -1,4 +1,4 @@
-package org.ikropachev.projectelster.model;
+package org.ikropachev.projectelster.model.oltp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -6,18 +6,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.time.LocalDate;
+import lombok.*;
+import org.ikropachev.projectelster.model.NamedEntityWithStringId;
 
 @Entity
 @Table(name = "salesperson")
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Salesperson extends NamedEntityWithStringId {
     @Id
     @Column(name = "salesperson_id", nullable = false)
@@ -29,10 +26,4 @@ public class Salesperson extends NamedEntityWithStringId {
     @Column(name = "salesperson_name", nullable = false)
     @Schema(example = "salesperson_name")
     protected String name;
-
-    public Salesperson(String id, String name, LocalDate updatedDtm) {
-        this.id = id;
-        this.name = name;
-        this.updatedDtm = updatedDtm;
-    }
 }

@@ -1,4 +1,4 @@
-package org.ikropachev.projectelster.model;
+package org.ikropachev.projectelster.model.oltp;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -7,10 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.ikropachev.projectelster.model.NamedEntityWithStringId;
 
 import java.time.LocalDate;
 
@@ -19,6 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Customer extends NamedEntityWithStringId {
     @Id
     @Column(name = "customer_id", nullable = false)
@@ -31,30 +30,18 @@ public class Customer extends NamedEntityWithStringId {
     @Schema(example = "cust_name")
     protected String name;
 
-    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "street", nullable = false)
     @Schema(example = "street")
     protected String street;
 
-    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "city", nullable = false)
     @Schema(example = "city")
     protected String city;
 
-    @NotBlank
     @Size(min = 1, max = 255)
     @Column(name = "itn", nullable = false)
     @Schema(example = "itn")
     protected String itn;
-
-    public Customer(String id, String name, String street, String city, String itn, LocalDate updatedDtm) {
-        this.id = id;
-        this.name = name;
-        this.street = street;
-        this.city = city;
-        this.itn = itn;
-        this.updatedDtm = updatedDtm;
-    }
 }
