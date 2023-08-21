@@ -1,4 +1,4 @@
-package org.ikropachev.projectelster.web.salesperson;
+package org.ikropachev.projectelster.web;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

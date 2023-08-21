@@ -16,9 +16,9 @@ public class OrderInfoControllerTest extends AbstractControllerTest {
 
     @Test
     public void getAllOrdersInfoTest() throws Exception {
-        TestOrderInfo testOrderInfo1 = new TestOrderInfo(1L, "CUST-004", "SPERSON-001", TODAY_STR);
-        TestOrderInfo testOrderInfo2 = new TestOrderInfo(2L, "CUST-001", "SPERSON-001", TODAY_STR);
-        TestOrderInfo testOrderInfo3 = new TestOrderInfo(3L, "CUST-002", "SPERSON-001", TODAY_STR);
+        TestOrderInfo testOrderInfo1 = new TestOrderInfo(1L, "CUST-004", "SPERSON-001", YESTERDAY_STR);
+        TestOrderInfo testOrderInfo2 = new TestOrderInfo(2L, "CUST-001", "SPERSON-001", YESTERDAY_STR);
+        TestOrderInfo testOrderInfo3 = new TestOrderInfo(3L, "CUST-002", "SPERSON-001", YESTERDAY_STR);
         TestOrderInfo testOrderInfo4 = new TestOrderInfo(4L, "CUST-003", "SPERSON-002", TODAY_STR);
         TestOrderInfo testOrderInfo5 = new TestOrderInfo(5L, "CUST-001", "SPERSON-002", TODAY_STR);
         TestOrderInfo testOrderInfo6 = new TestOrderInfo(6L, "CUST-001", "SPERSON-002", TODAY_STR);

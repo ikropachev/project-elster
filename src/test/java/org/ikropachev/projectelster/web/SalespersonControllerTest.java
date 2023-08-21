@@ -16,7 +16,7 @@ public class SalespersonControllerTest extends AbstractControllerTest {
 
     @Test
     public void getAllSalespersonsTest() throws Exception {
-        TestSalesperson testSalesperson1 = new TestSalesperson("SPERSON-001", "John Smith", TODAY_STR);
+        TestSalesperson testSalesperson1 = new TestSalesperson("SPERSON-001", "John Smith", YESTERDAY_STR);
         TestSalesperson testSalesperson2 = new TestSalesperson("SPERSON-002", "Jack London", TODAY_STR);
         final List<TestSalesperson> testSalespersons = List.of(testSalesperson1, testSalesperson2);
 

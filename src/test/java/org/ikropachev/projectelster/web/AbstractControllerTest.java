@@ -16,6 +16,7 @@ import java.time.LocalDate;
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 public abstract class AbstractControllerTest {
+    protected final String YESTERDAY_STR = LocalDate.now().minusDays(1).toString();
     protected final String TODAY_STR = LocalDate.now().toString();
 
     @Autowired

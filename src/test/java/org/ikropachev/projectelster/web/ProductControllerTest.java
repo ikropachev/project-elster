@@ -16,7 +16,7 @@ public class ProductControllerTest extends AbstractControllerTest {
 
     @Test
     public void getAllProductsTest() throws Exception {
-        TestProduct testProduct1 = new TestProduct(1L, "Vacuum cleaner", TODAY_STR);
+        TestProduct testProduct1 = new TestProduct(1L, "Vacuum cleaner", YESTERDAY_STR);
         TestProduct testProduct2 = new TestProduct(2L, "Cleaner bags", TODAY_STR);
         TestProduct testProduct3 = new TestProduct(3L, "Oven mittens", TODAY_STR);
         final List<TestProduct> testProducts = List.of(testProduct1, testProduct2, testProduct3);
