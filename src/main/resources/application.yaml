@@ -1,6 +1,10 @@
 #  https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 spring:
+  sql:
+    init:
+      mode: always
   jpa:
+    generate-ddl: true
     show-sql: true
     open-in-view: false
     # https://stackoverflow.com/a/67678945/548473
@@ -15,19 +19,16 @@ spring:
         # https://stackoverflow.com/questions/21257819/what-is-the-difference-between-hibernate-jdbc-fetch-size-and-hibernate-jdbc-batc
         jdbc.batch_size: 20
   datasource:
-    # ImMemory
-    url: jdbc:h2:mem:projectelster
-    #    tcp: jdbc:h2:tcp://localhost:9092/mem:projectelster
-    # Absolute path
-    #    url: jdbc:h2:C:/projects/projectelster/db/projectelster
-    #    tcp: jdbc:h2:tcp://localhost:9092/C:/projects/projectelster/db/projectelster
-    # Relative path form current dir
-    #    url: jdbc:h2:./db/projectelster
-    # Relative path from home
-    #    url: jdbc:h2:~/projectelster
-    #    tcp: jdbc:h2:tcp://localhost:9092/~/projectelster
-    username: sa
-    password:
+    oltp:
+      # ImMemory
+      url: jdbc:h2:mem:projectelster
+      username: sa
+      password:
+    dwh:
+      # ImMemory
+      url: jdbc:hsqldb:mem:projectelster
+      username: sa
+      password:
 
   # Jackson Serialization Issue Resolver
   jackson:

@@ -40,7 +40,7 @@ public class ProductController extends AbstractController {
     @GetMapping("/oltp")
     @Operation(summary = "View a list of all products from oltp")
     public List<Product> getAllFromOltp() {
-        log.info("get all customers from oltp");
+        log.info("get all products from oltp");
         return productRepository.getAll();
     }
 
