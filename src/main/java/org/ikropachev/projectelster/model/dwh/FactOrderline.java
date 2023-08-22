@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class FactOrderline extends BaseEntityWithLongId {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orderline_id", nullable = false)
     @Schema(accessMode = Schema.AccessMode.READ_ONLY, example = "null")
     protected Long id;

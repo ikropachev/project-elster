@@ -22,11 +22,11 @@ public class Orderline extends BaseEntityWithLongId {
 
     @Column(name = "order_id", nullable = false)
     @Schema(example = "order_id")
-    protected Integer orderId;
+    protected Long orderId;
 
     @Column(name = "product_id", nullable = false)
     @Schema(example = "product_id")
-    protected Integer productId;
+    protected Long productId;
 
     @Column(name = "quantity", nullable = false)
     @Schema(example = "quantity")

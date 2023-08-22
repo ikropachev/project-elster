@@ -45,6 +45,7 @@
             $column("product_id"):      INTEGER
             $column("quantity"):        REAL
             $column("price"):           REAL
+            $column("updated_dtm"):     TIMESTAMP
         }
         $importtable("customer", "customer") {
             $pk("customer_id"):     VARCHAR(255)

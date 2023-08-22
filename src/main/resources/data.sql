@@ -1,5 +1,5 @@
 INSERT INTO order_info (order_id, customer_id, salesperson_id, updated_dtm)
-VALUES (1, 'CUST-004', 'SPERSON-001', current_timestamp - 1);
+VALUES (1, 'CUST-001', 'SPERSON-001', current_timestamp - 1);
 INSERT INTO order_info (order_id, customer_id, salesperson_id, updated_dtm)
 VALUES (2, 'CUST-001', 'SPERSON-001', current_timestamp - 1);
 INSERT INTO order_info (order_id, customer_id, salesperson_id, updated_dtm)
@@ -9,7 +9,7 @@ VALUES (4, 'CUST-003', 'SPERSON-002', current_timestamp);
 INSERT INTO order_info (order_id, customer_id, salesperson_id, updated_dtm)
 VALUES (5, 'CUST-001', 'SPERSON-002', current_timestamp);
 INSERT INTO order_info (order_id, customer_id, salesperson_id, updated_dtm)
-VALUES (6, 'CUST-001', 'SPERSON-002', current_timestamp);
+VALUES (6, 'CUST-004', 'SPERSON-002', current_timestamp);
 
 INSERT INTO orderline (orderline_id, order_id, product_id, quantity, price, updated_dtm)
 values (1, 1, 1, 3, 49.99, current_timestamp - 1);
@@ -18,7 +18,7 @@ values (2, 1, 2, 1, 24.99, current_timestamp - 1);
 INSERT INTO orderline (orderline_id, order_id, product_id, quantity, price, updated_dtm)
 values (3, 2, 2, 1, 24.99, current_timestamp - 1);
 INSERT INTO orderline (orderline_id, order_id, product_id, quantity, price, updated_dtm)
-values (4, 2, 3, 2, 19.99, current_timestamp - 1);
+values (4, 2, 1, 2, 19.99, current_timestamp - 1);
 INSERT INTO orderline (orderline_id, order_id, product_id, quantity, price, updated_dtm)
 values (5, 3, 1, 1, 49.99, current_timestamp - 1);
 INSERT INTO orderline (orderline_id, order_id, product_id, quantity, price, updated_dtm)
