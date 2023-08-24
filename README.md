@@ -1,7 +1,8 @@
 ### Project ELSTER
 Extract, Load, Save, Transform, Edit, Repair.
 
-Etl-service based on Spring Data JPA with multiple datasources.
+ETL-service with multiple datasources. Tech stack: Spring Boot v3, Spring Data JPA, Jakarta, JDK18, H2 database, HSQLDB,
+MySQL, PostgreSQL, JUnit5, Swagger v3, Maven.
 
 Work in progress.
 
