@@ -32,7 +32,7 @@
 
     title "Data warehouse"
 
-    $schema("dwh", "dwh") {
+    $schema("oltp", "oltp") {
         $importtable("order_info", "order_info") {
             $pk("order_id"):            INTEGER
             $column("customer_id"):     VARCHAR(255)
@@ -65,41 +65,43 @@
             $column("salesperson_name"):    VARCHAR(255)
             $column("updated_dtm"):         TIMESTAMP
         }
-        $table("fact_orderline", "fact_orderline") {
-            $pk("orderline_id"):                INTEGER
-            $column("customer_key"):            INTEGER
-            $column("salesperson_key"):         INTEGER
-            $column("order_id"):                INTEGER
-            $column("product_key"):             INTEGER
-            $column("quantity"):                REAL
-            $column("price"):                   REAL
-            $column("updated_dtm"):             TIMESTAMP
-        }
-        $table("dim_customer", "dim_customer") {
-            $pk("customer_key"):        INTEGER
-            $column("customer_id"):     VARCHAR(255)
-            $column("customer_name"):   VARCHAR(255)
-            $column("customer_itn"):    VARCHAR(255)
-            $column("updated_dtm"):     TIMESTAMP
-        }
-        $table("dim_product", "dim_product") {
-            $pk("product_key"):         INTEGER
-            $column("product_id"):      INTEGER
-            $column("product_name"):    VARCHAR(255)
-            $column("updated_dtm"):     TIMESTAMP
-        }
-        $table("dim_salesperson", "dim_salesperson") {
-            $pk("salesperson_key"):         INTEGER
-            $column("salesperson_id"):      VARCHAR(255)
-            $column("salesperson_name"):    VARCHAR(255)
-            $column("updated_dtm"):         TIMESTAMP
-        }
     }
-    dwh.customer --> dwh.dim_customer
-    dwh.product --> dwh.dim_product
-    dwh.salesperson --> dwh.dim_salesperson
-    dwh.order_info --> dwh.fact_orderline
-    dwh.orderline --> dwh.fact_orderline
+    $schema("dwh", "dwh") {
+            $table("fact_orderline", "fact_orderline") {
+                $pk("orderline_id"):                INTEGER
+                $column("customer_key"):            INTEGER
+                $column("salesperson_key"):         INTEGER
+                $column("order_id"):                INTEGER
+                $column("product_key"):             INTEGER
+                $column("quantity"):                REAL
+                $column("price"):                   REAL
+                $column("updated_dtm"):             TIMESTAMP
+            }
+            $table("dim_customer", "dim_customer") {
+                $pk("customer_key"):        INTEGER
+                $column("customer_id"):     VARCHAR(255)
+                $column("customer_name"):   VARCHAR(255)
+                $column("customer_itn"):    VARCHAR(255)
+                $column("updated_dtm"):     TIMESTAMP
+            }
+            $table("dim_product", "dim_product") {
+                $pk("product_key"):         INTEGER
+                $column("product_id"):      INTEGER
+                $column("product_name"):    VARCHAR(255)
+                $column("updated_dtm"):     TIMESTAMP
+            }
+            $table("dim_salesperson", "dim_salesperson") {
+                $pk("salesperson_key"):         INTEGER
+                $column("salesperson_id"):      VARCHAR(255)
+                $column("salesperson_name"):    VARCHAR(255)
+                $column("updated_dtm"):         TIMESTAMP
+            }
+        }
+    oltp.customer --> dwh.dim_customer
+    oltp.product --> dwh.dim_product
+    oltp.salesperson --> dwh.dim_salesperson
+    oltp.order_info --> dwh.fact_orderline
+    oltp.orderline --> dwh.fact_orderline
     dwh.dim_customer --> dwh.fact_orderline
     dwh.dim_product --> dwh.fact_orderline
     dwh.dim_salesperson --> dwh.fact_orderline
