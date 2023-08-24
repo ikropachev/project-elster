@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,8 +40,12 @@ public class OltpDataSourceConfiguration {
     @Primary
     @ConfigurationProperties("spring.jpa.datasource.oltp.configuration")
     public DataSource oltpDataSource() {
-        return oltpDataSourceProperties().initializeDataSourceBuilder()
-                .type(HikariDataSource.class).build();
+        return DataSourceBuilder.create()
+                .driverClassName("com.mysql.cj.jdbc.Driver")
+                .url("jdbc:mysql://localhost:3306/projectelster")
+                .username("root")
+                .password("root")
+                .build();
     }
 
     @Bean(name = "oltpEntityManagerFactory")
@@ -55,6 +60,7 @@ public class OltpDataSourceConfiguration {
         em.setJpaVendorAdapter(vendorAdapter);
         HashMap<String, Object> properties = new HashMap<>();
         properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         em.setJpaPropertyMap(properties);
         return em;
     }

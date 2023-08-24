@@ -3,7 +3,7 @@ package org.ikropachev.projectelster.config;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import lombok.extern.slf4j.Slf4j;
-import org.h2.tools.Server;
+//import org.h2.tools.Server;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +18,7 @@ import java.util.HashMap;
 @Slf4j
 @EnableCaching
 public class AppConfig {
-
+/*
     @Profile("!test")
     @Bean(initMethod = "start", destroyMethod = "stop")
     Server h2Server() throws SQLException {
@@ -32,6 +32,8 @@ public class AppConfig {
         log.info("Start hsql TCP server");
         return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9095");
     }
+
+ */
 
     @Bean
     Module module() {

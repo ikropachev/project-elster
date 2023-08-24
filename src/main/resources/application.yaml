@@ -11,6 +11,7 @@ spring:
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
+      dialect: MySQL8Dialect
     properties:
       #  http://docs.jboss.org/hibernate/orm/5.3/userguide/html_single/Hibernate_User_Guide.html#configurations
       hibernate:
@@ -21,15 +22,25 @@ spring:
   datasource:
     oltp:
       # ImMemory
-      url: jdbc:h2:mem:projectelster
-      username: sa
-      password:
+      #url: jdbc:h2:mem:projectelster
+      #tcp: jdbc:h2:tcp://localhost:9092/mem:projectelster
+      #username: sa
+      #password:
+      # MySQL
+      url: jdbc:mysql://localhost:3306/projectelster
+      username: root
+      password: root
     dwh:
       # ImMemory
-      url: jdbc:hsqldb:mem:projectelster
-      username: sa
-      password:
-
+      #url: jdbc:hsqldb:mem:projectelster
+      #tcp: jdbc:hsqldb:tcp://localhost:9095/mem:projectelster
+      #username: sa
+      #password:
+      # PostgreSQL
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5432/projectelster
+      username: postgres
+      password: root
   # Jackson Serialization Issue Resolver
   jackson:
     visibility:
@@ -40,7 +51,7 @@ spring:
 
 logging:
   level:
-    root: WARN
+    root: INFO
     org.ikropachev.projectelster: DEBUG
     org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
 
